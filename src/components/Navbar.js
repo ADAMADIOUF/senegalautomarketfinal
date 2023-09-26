@@ -79,14 +79,15 @@ const { myUser, loginWithRedirect, logout } = useUserContext()
               Favorite{' '}
             </Link>
           </li>
-     
         )}
         {myUser ? (
           <li>
             <button
               type='button'
               className='auth-btn'
-              onClick={() => logout({ returnTo: window.location.origin })}
+              onClick={() =>
+                logout({ returnTo: 'https://senegalautomarket.com/' })
+              }
             >
               logout <FaUserMinus />
             </button>
