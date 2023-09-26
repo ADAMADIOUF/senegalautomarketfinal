@@ -54,7 +54,7 @@ Global Styles
   box-sizing: border-box;
 }
 body {
-  font-family: var(--primary-font11);
+  font-family: var(--primary-font1);
   background:var(--clr-white);
   color: var(--clr-black);
   line-height: 1.5;
