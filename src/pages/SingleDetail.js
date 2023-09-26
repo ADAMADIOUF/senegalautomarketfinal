@@ -117,7 +117,12 @@ const handleAddToCart = () => {
       <div className='single-detail-container'>
         <article>
           <h2>
-            {product.make} {product.model}
+            {product.make ? (
+              <h2>
+                {product.make} {product.model}
+              </h2>
+            ) : null}
+         
           </h2>
           <p className='single-des'>
             <FaInfoCircle className='icon' /> Description : {product.desc}

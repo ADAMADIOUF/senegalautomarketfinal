@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import singleDetails from '../dataNotations'
-import ScrollProgressBar from 'react-scroll-progress-bar'
+
 import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
@@ -95,19 +95,19 @@ const handleAddToCart = () => {
       </AwesomeSlider>
       <div className='single-detail-container'>
         <article>
-          <h2>
+         {product.make? <h2>
             {product.make} {product.model}
-          </h2>
+          </h2>:null}
           <p className='single-des'>Description : {product.desc}</p>
           <p>Prix : {product.price} CFA </p>
           <h3>Informations supplémentaires :</h3>
-          <p>
+          {product.year?<p>
             <FaExclamationCircle className='icon' /> Année : {product.year}
-          </p>
-          <p>
+          </p>:null}
+          {product.city?<p>
             <FaMapMarkerAlt className='icon' /> Ville : {product.city}
-          </p>
-          <p>Caractéristiques : {product.features}</p>
+          </p>:null}
+         {product.features? <p>Caractéristiques : {product.features}</p>:null}
           <div className='owner'>
             <div>
               <h3>Informations du propriétaire :</h3>
@@ -124,23 +124,27 @@ const handleAddToCart = () => {
           <div>
             <h3>Plus de détails :</h3>
             <p>
-              <FaCar className='icon' /> Couleur : {product.color}
+              {product.color ? (
+                <>
+                  <FaCar className='icon' /> Couleur : {product.color}
+                </>
+              ) : null}
             </p>
-            <p>
+            {product.transmission?<p>
               <FaExchangeAlt className='icon' /> Transmission :{' '}
               {product.transmission}
-            </p>
-            <p>
+            </p>:null}
+            {product.fuelType?<p>
               <FaGasPump className='icon' /> Type de carburant :{' '}
               {product.fuelType}
-            </p>
-            <p>
+            </p>:null}
+            {product.engine?<p>
               <FaCog className='icon' /> Moteur : {product.engine}
-            </p>
-            <p>
+            </p>:null}
+            {product.mileage?<p>
               <FaTachometerAlt className='icon' /> Kilométrage :{' '}
               {product.mileage}
-            </p>
+            </p>:null}
             <button className='btn btn-commander' onClick={handleAddToCart}>
               <FaWhatsapp className='icon' /> Commander
             </button>
