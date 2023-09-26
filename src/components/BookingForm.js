@@ -25,7 +25,6 @@ const BookingForm = () => {
   }
 
   const handleSubmit = () => {
-    // Naviguer vers la page de détails avec la ville et les dates saisies
     navigate('/details', { state: { city, startDate, endDate } })
   }
 

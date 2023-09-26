@@ -72,7 +72,7 @@ const Contact = () => {
               />
             </div>
             <button type='submit' className='btn-contact' >
-              send
+              Envoyer le message
             </button>
             
            

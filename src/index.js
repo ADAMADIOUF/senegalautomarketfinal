@@ -5,10 +5,10 @@ import './index.css'
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Outlet,
+  
   Route,
   RouterProvider,
-  Routes,
+  
 } from 'react-router-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -37,20 +37,19 @@ import SingleCarSeller from './pages/SingleCarSeller'
 import CarLocation from './pages/CarLocation'
 import SingleDetail from './pages/SingleDetail'
 import DetailsPage from './components/DetailsPage'
-import Auth0ProviderWithHistory from './pages/Auth0ProviderWithHistory'
+
 import { Auth0Provider } from '@auth0/auth0-react'
 import { UserProvider } from './user_context'
 import Favorites from './pages/Favorites'
 import PrivateRoute from './pages/PrivateRoute'
+import Mercedes from './components/Mercees'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index={true} path='/' element={<Home />} />
       <Route path='/howitswork' element={<HowItsWork />} />
       <Route path='/contact' element={<Contact />} />
-
       <Route path='/toyota' element={<Toyota />} />
-
       <Route path='/jeep' element={<Jeep />} />
       <Route path='/tesla' element={<Tesla />} />
       <Route path='/subaru' element={<Subaru />} />
@@ -59,6 +58,7 @@ const router = createBrowserRouter(
       <Route path='/nissan' element={<Nissan />} />
       <Route path='/lamborghini' element={<Lamborghini />} />
       <Route path='/ford' element={<Ford />} />
+      <Route path='/mercedes' element={<Mercedes />} />
 
       <Route path='/travel' element={<ReciteDeVoyage />} />
       <Route path='/weather' element={<PrintempsTardifSurLaRouteSeaToSky />} />
@@ -67,10 +67,8 @@ const router = createBrowserRouter(
       <Route path='/location' element={<CarLocation />} />
       <Route path='/seller/:id' element={<SingleCarSeller />} />
       <Route path='/details/:id' element={<SingleDetail />} />
-
       <Route path='' element={<PrivateRoute />}>
         <Route path='/favorite' element={<Favorites />} />
-        
       </Route>
     </Route>
   )

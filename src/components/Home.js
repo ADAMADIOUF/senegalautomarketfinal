@@ -34,7 +34,7 @@ const Home = () => {
         </p>
         <div className='bg'></div>
       </div>
-      <CarCategoriesSlider />
+      <CarCategoriesSlider  />
       <FirstBanner />
       <SecondBanner />
       <ThirdBanner />

@@ -11,6 +11,8 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
+import { addFavorite, removeFavorite } from '../slices/favoritesSlice'
+import { AiTwotoneHeart } from 'react-icons/ai'
 
 const CarLocation = () => {
   const dispatch = useDispatch()
@@ -21,6 +23,8 @@ const CarLocation = () => {
 const [errorMessage, setErrorMessage] = useState('')
 const [showMessage, setShowMessage] = useState(false)
 const [showMessageDate, setShowMessageDate] = useState(false)
+const favoriteProductIds = useSelector((state) => state.favorites)
+const [favoriteMessage, setFavoriteMessage] = useState('')
 
 const [message, setMessage] = useState('')
 const [formFilled, setFormFilled] = useState(false)
@@ -48,6 +52,23 @@ const handleFormSubmit = (e) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+const toggleFavorite = (productId) => {
+  if (favoriteProductIds.includes(productId)) {
+    dispatch(removeFavorite(productId))
+    setFavoriteMessage('Retiré de vos favoris')
+  } else {
+    dispatch(addFavorite(productId))
+    setFavoriteMessage('Enregistré dans vos favoris')
+  }
+
+  setShowMessage(true)
+
+  setTimeout(() => {
+    setShowMessage(false)
+    setFavoriteMessage('')
+  }, 5000)
+}
 
   if (loading) {
     return <Loading />
@@ -79,6 +100,7 @@ const handleFormSubmit = (e) => {
   }
   return (
     <div className='details-page section-center'>
+      {showMessage && <p className='message'>{favoriteMessage}</p>}
       <div className='booking-form-car'>
         <form onSubmit={handleFormSubmit} className='form-container-car'>
           <div>
@@ -105,7 +127,7 @@ const handleFormSubmit = (e) => {
       <h2 className='seller-car-title'>Location de voiture</h2>
       {showMessageDate && <p className='message'>Date choisie avec succès !</p>}
 
-      {showMessage && <p className='message'>{message}</p>}
+      
       <div className='details-products'>
         {locationProducts.map((product) => (
           <div key={product.id} className='product-card'>
@@ -141,6 +163,19 @@ const handleFormSubmit = (e) => {
             </Link>
             <div className='details-heart'>
               <h3>{product.price} CFA</h3>
+              <button
+                onClick={(e) => {
+                  e.preventDefault() // Prevent link navigation
+                  toggleFavorite(product.id)
+                }}
+                className={`favorite-button ${
+                  favoriteProductIds.includes(product.id)
+                    ? 'favorited-heart'
+                    : 'unfavorited-heart'
+                }`}
+              >
+                <AiTwotoneHeart />
+              </button>
               <MapCar
                 latitude={product.latitude}
                 longitude={product.longitude}

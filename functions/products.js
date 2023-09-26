@@ -32,7 +32,8 @@ exports.handler = async (event, context, cb) => {
         fuelType,
         engine,
         mileage,
-        location,sell
+        location,sell,
+        jeep,tesla,subaru,porsche,bmw,mercedes,toyota,nissan,lamborghini,ford
       } = fields
       // Convert img to an array of URLs
       const images = Array.isArray(img) ? img.map((item) => item.url) : []
@@ -62,6 +63,16 @@ exports.handler = async (event, context, cb) => {
         mileage,
         location,
         sell,
+        jeep,
+        tesla,
+        subaru,
+        porsche,
+        bmw,
+        mercedes,
+        toyota,
+        nissan,
+        lamborghini,
+        ford,
       }
     })
 

@@ -33,7 +33,7 @@ const carCategories = [
     _id: 6,
     name: 'Mercedes-Benz',
     image: '/images/c6.png',
-    link: '/mercedes-benz',
+    link: '/mercedes',
   },
   {
     _id: 7,

@@ -305,18 +305,63 @@ body, ul, li {
 }
 .banner-first-details{
   position: absolute;
-  top: 80%;
-  left: 0;
+  top: 72%;
+  left: 10%;
 }
 .banner-first-details h2{
-  color: var(--clr-white);
-  text-transform: uppercase;
+  max-width: 20rem;
+  color: var(--clr-black);
+  font-size: 1rem;
   font-family: var(--primary-font2);
   letter-spacing:var(--spacing);
   font-size: 1rem;
 }
 
-
+.banner-hide{
+  display: none;
+}
+.banner-first-info{
+  display: none;
+}
+.banner-info-relative{
+    position: relative;
+  }
+@media (min-width:992px) {
+  .banner-hide{
+    display: flex;
+  }
+  .banner-first-details h2{
+    margin-top: 2rem;
+    max-width: 45rem;
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
+}
+@media (min-width:768px) {
+  
+  .banner-first-info{
+    position: absolute;
+    top:-10rem;
+    right: 4rem;
+    display: block;
+  }
+  .banner-first-info h3{
+    font-size: 1rem;
+  }
+}
+@media (min-width:992px) {
+  
+  .banner-first-info{
+    position: absolute;
+    top:-20rem;
+    right: 10rem;
+    display: block;
+  }
+  .banner-first-info h3{
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}
 /* BookingForm */
 
 
@@ -942,12 +987,14 @@ p {
 }
 .favorite-message p{
   font-size: 2rem;
+ 
 }
 .message {
   background-color:var(--clr-black);
   color:var(--clr-white);
   padding: 10px;
   text-align: center;
+  
 }
 .favorited-heart{
   font-size: 2rem;

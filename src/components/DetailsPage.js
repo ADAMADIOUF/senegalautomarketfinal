@@ -9,6 +9,7 @@ import { fetchProductsAsync } from '../slices/productsApiSlice'
 import Loading from './Loading'
 import Error from './Error'
 import MapCar from './MapCar'
+import { addFavorite, removeFavorite } from '../slices/favoritesSlice'
 
 const DetailsPage = () => {
   // État et envoi de l'action Redux
@@ -17,6 +18,9 @@ const DetailsPage = () => {
   const status = useSelector((state) => state.products.status)
   const error = useSelector((state) => state.products.error)
   const loading = useSelector((state) => state.products.loading)
+const favoriteProductIds = useSelector((state) => state.favorites)
+const [favoriteMessage, setFavoriteMessage] = useState('')
+const [showMessage, setShowMessage] = useState(false)
 
   // Récupérer les produits si le statut est 'idle'
   useEffect(() => {
@@ -42,6 +46,24 @@ const DetailsPage = () => {
 
   const { city, startDate, endDate } = bookingData
 
+
+const toggleFavorite = (productId) => {
+  if (favoriteProductIds.includes(productId)) {
+    dispatch(removeFavorite(productId))
+    setFavoriteMessage('Retiré de vos favoris')
+  } else {
+    dispatch(addFavorite(productId))
+    setFavoriteMessage('Enregistré dans vos favoris')
+  }
+
+  setShowMessage(true)
+
+  setTimeout(() => {
+    setShowMessage(false)
+    setFavoriteMessage('')
+  }, 5000)
+}
+
   if (loading) {
     return <Loading />
   }
@@ -66,6 +88,7 @@ const DetailsPage = () => {
 
   return (
     <div className='details-page section-center'>
+      {showMessage && <p className='message'>{favoriteMessage}</p>}
       <h2 className='details-header'>Page de détails</h2>
       <p className='details-info'>Ville : {city}</p>
       <p className='details-info'>
@@ -106,8 +129,14 @@ const DetailsPage = () => {
                     <h3>{product.price} CFA/jour</h3>
                     <button
                       onClick={(e) => {
-                        e.preventDefault()
+                        e.preventDefault() // Prevent link navigation
+                        toggleFavorite(product.id)
                       }}
+                      className={`favorite-button ${
+                        favoriteProductIds.includes(product.id)
+                          ? 'favorited-heart'
+                          : 'unfavorited-heart'
+                      }`}
                     >
                       <AiTwotoneHeart />
                     </button>

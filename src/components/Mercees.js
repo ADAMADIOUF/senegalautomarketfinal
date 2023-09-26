@@ -12,7 +12,7 @@ import Error from '../components/Error'
 import { addFavorite, removeFavorite } from '../slices/favoritesSlice'
 import { AiTwotoneHeart } from 'react-icons/ai'
 
-const Porsche = () => {
+const Mercedes = () => {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.products.data)
   const status = useSelector((state) => state.products.status)
@@ -67,7 +67,7 @@ const Porsche = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   }
-  const productBmw = products.filter((product) => product.porsche)
+  const productBmw = products.filter((product) => product.mercedes)
   return (
     <div className='details-page section-center'>
       {showMessage && <p className='message'>{favoriteMessage}</p>}
@@ -115,4 +115,4 @@ const Porsche = () => {
   )
 }
 
-export default Porsche
+export default Mercedes
