@@ -89,7 +89,7 @@ const { myUser, loginWithRedirect, logout } = useUserContext()
                 logout({ returnTo: 'https://senegalautomarket.com/' })
               }
             >
-              logout <FaUserMinus />
+              Déconnexion <FaUserMinus />
             </button>
           </li>
         ) : (
@@ -99,7 +99,8 @@ const { myUser, loginWithRedirect, logout } = useUserContext()
               className='auth-btn'
               onClick={loginWithRedirect}
             >
-              login <FaUserPlus />
+              connexion
+              <FaUserPlus />
             </button>
           </li>
         )}
